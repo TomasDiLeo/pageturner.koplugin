@@ -15,8 +15,7 @@ A KoReader plugin that allows remote page turning via UDP commands from a Page T
 2. Move the `pageturner.koplugin` folder into KOReader’s `plugins/` directory.
 3. Restart KOReader.
 4. The plugin will appear under `Tools` as `Page Turner`
-5. Download and install the Page Turner Companion apk from the release section (F-Droid verion in progress)
-
+5. Download and install the Page Turner Companion apk from the release section
 [Page Turner Companion source code](https://github.com/TomasDiLeo/koreader_pageturner_companion)
 
 The plugin has been tested on KOReader 2025.10 on a Kindle PW5,
