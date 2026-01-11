@@ -10,6 +10,7 @@ local Service = require("service")
 local PageTurner = WidgetContainer:extend{
     name = "page_turner",
     is_doc_only = false,
+    was_running_before_suspend = false,
 }
 
 function PageTurner:init()
@@ -76,6 +77,28 @@ end
 
 function PageTurner:onClose()
     Service:stop()
+end
+
+function PageTurner:onSuspend()
+    if Service.running then
+        self.was_running_before_suspend = true
+        Service:stop()
+        logger.info("[PageTurner] Service stopped due to device suspend")
+    else
+        self.was_running_before_suspend = false
+    end
+end
+
+function PageTurner:onResume()
+    if self.was_running_before_suspend then
+        Service:start(self.ui)
+        logger.info("[PageTurner] Service restarted after device resume")
+        UIManager:show(InfoMessage:new{
+            text = _("Page Turner Service restarted after wake"),
+                    icon = "wifi",
+                    timeout = 3,
+        })
+    end
 end
 
 return PageTurner
