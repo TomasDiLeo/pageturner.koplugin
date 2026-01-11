@@ -42,7 +42,7 @@ The plugin has been tested on KOReader 2025.10 on a Kindle PW5,
 
 7. Once you press `Accept` the control screen will appear in the Page Turner Companion App
 
-<img src="/images/companion_control.png" alt="drawing" width="300"/>
+<img src="/images/companion_control.jpg" alt="drawing" width="300"/>
 
 8. With a document opened, press the `PREVIOUS` and `NEXT` buttons to control your KOReader device. Alternatively you can use the volume control butttons to turn pages!
 
