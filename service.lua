@@ -142,9 +142,13 @@ function Service:_tick()
         if self.ui and self.ui.document then
             if data == "NEXT" then
                 self.ui:handleEvent(Event:new("GotoViewRel", 1))
+                -- Notify autosuspend plugin of user activity
+                UIManager.event_hook:execute("InputEvent")
                 reply = "OK"
             elseif data == "PREV" then
                 self.ui:handleEvent(Event:new("GotoViewRel", -1))
+                -- Notify autosuspend plugin of user activity
+                UIManager.event_hook:execute("InputEvent")
                 reply = "OK"
             else
                 logger.info("[PageTurner] Unknown command:", data) --TODO REMOVE
