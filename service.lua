@@ -140,26 +140,28 @@ function Service:_tick()
         -- Process commands
         local reply = ""
         if self.ui and self.ui.document then
-            if data == "NEXT" then
-                self.ui:handleEvent(Event:new("GotoViewRel", 1))
-                -- Notify autosuspend plugin of user activity
-                UIManager.event_hook:execute("InputEvent")
-                reply = "OK"
-            elseif data == "PREV" then
-                self.ui:handleEvent(Event:new("GotoViewRel", -1))
-                -- Notify autosuspend plugin of user activity
-                UIManager.event_hook:execute("InputEvent")
-                reply = "OK"
-            else
-                logger.info("[PageTurner] Unknown command:", data) --TODO REMOVE
-                reply = "ERR:UNKNOWN_COMMAND"
-            end
+            reply = self:_processCommand(data)
         else
             logger.info("[PageTurner] No document open")
             reply = "ERR:NO_DOCUMENT"
         end
         
         self.udp:sendto(reply, ip, port)
+    end
+end
+
+function Service:_processCommand(cmd)
+    local commands = {
+        ["NEXT"] = function() self.ui:handleEvent(Event:new("GotoViewRel", 1)) end,
+        ["PREV"] = function() self.ui:handleEvent(Event:new("GotoViewRel", -1)) end,
+    }
+
+    if commands[cmd] then
+        commands[cmd]()
+        UIManager.event_hook:execute("InputEvent")
+        return "OK"
+    else
+        return "ERR:UNKNOWN_COMMAND"
     end
 end
 
