@@ -1,5 +1,12 @@
 # PageTurner KoReader Plugin
 
+(DEPRECATED) for the latest versions go to https://github.com/TomasDiLeo/koreader_pageturner_companion
+
+(WARNING) This version of the app is not being updated.
+(WARNING) This plugin does not work reliably on a Kindle device, use the HTTP Inspector based APP linked above
+
+---------------------------------------------------------
+
 A KoReader plugin that allows remote page turning via UDP commands from a Page Turning Companion app or any UDP client.
 
 ## Features
